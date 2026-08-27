@@ -1,0 +1,12 @@
+{
+  "patch_size": [160, 160, 32],
+  "postprocess": "threshold_score_cc",
+  "threshold": 0.3,
+  "min_size": 0,
+  "keep_components": 1,
+  "component_score": "mean",
+  "fill_holes": false,
+  "tta": false,
+  "overlap": 0.5,
+  "sw_batch_size": 1
+}

@@ -1,0 +1,60 @@
+{
+  "team": "CVMAIL_VinUni",
+  "stage": "TEST - FINAL SUBMISSION ONLY",
+  "submissions": [
+    {
+      "submission_id": 9777071,
+      "tasks": [2],
+      "leaderboard_filename": "task2 (3).sif",
+      "local_filename": "task2.sif",
+      "sif_sha256": "c905dd6b85fc5aec32760ec13b718d92ccbbfd560c723295ad8a291fdcb8a973",
+      "source": "task2_9777071/predict.py",
+      "source_sha256": "ee35fe1dae1c5eb82415faa1bce8e8d95c05bd2284c3e9ad9e52d37f1ce7d4b3"
+    },
+    {
+      "submission_id": 9777070,
+      "tasks": [6, 7],
+      "leaderboard_filename": "task6.sif",
+      "local_filename": "task6.sif",
+      "sif_sha256": "9376afef6a0d18ef95b04f8deef1cd654626604bb8330dcbb855f87b0b485511",
+      "source": "task67_9777070/predict.py",
+      "source_sha256": "b19791530b6746f331655cde295d054e4592b4da989d85c88b1f07068ea653cc"
+    },
+    {
+      "submission_id": 9777069,
+      "tasks": [5],
+      "leaderboard_filename": "task5_deconf_ap140_v3.sif",
+      "local_filename": "task5_deconf_ap140_v3.sif",
+      "sif_sha256": "b04aa7f63af2124720b114d41b899edc92df82006cddf625c3b7fb447db4389e",
+      "source": "task5_9777069/predict.py",
+      "source_sha256": "8b1c8091f6b4bb0d89fe112da274dcce297e4d0062a3b473c920f8019f40155c"
+    },
+    {
+      "submission_id": 9777068,
+      "tasks": [4],
+      "leaderboard_filename": "task4.sif",
+      "local_filename": "task4.sif",
+      "sif_sha256": "3efd908f1bd2dfa18687569b8ac5498650d36a2452acf401b7260a4ce78fa21b",
+      "source": "task4_9777068/predict.py",
+      "source_sha256": "693db3dd767ea0670516d39c5ac5e04d7f308b73de484e682e32665f617578a9"
+    },
+    {
+      "submission_id": 9777067,
+      "tasks": [3],
+      "leaderboard_filename": "task3_v2_spacing1mm.sif",
+      "local_filename": "task3_v2_spacing1mm.sif",
+      "sif_sha256": "cb0fef85ba0d3a260d5f68a45dee6efa437b72f30626555e648db18c6443ca0a",
+      "source": "task3_9777067/predict.py",
+      "source_sha256": "e13f80ec919138afedbb27483bb092dd654acbf360206bad5f0c4180fbdcbe48"
+    },
+    {
+      "submission_id": 9777066,
+      "tasks": [1],
+      "leaderboard_filename": "task1_ens.sif",
+      "local_filename": "task1_ens.sif",
+      "sif_sha256": "4b0d852d74ffe22acb590dd3f06a035ad384ad814874f802d8cee5d459ad19f7",
+      "source": "task1_9777066/predict.py",
+      "source_sha256": "81503d49a03e8c71560fa462bd2cd7b2aa8afaa668944d38e5b254d7e1f58193"
+    }
+  ]
+}

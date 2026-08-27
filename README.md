@@ -55,7 +55,7 @@ reported run used PyTorch 2.6, CUDA 12.4, Lightning 2.4, and bfloat16 mixed
 precision.
 
 ```bash
-git clone https://github.com/trongduc-nguyen/fomo.git brainaxl
+git clone https://github.com/hieuphamha19/BrainAxL.git brainaxl
 cd brainaxl
 
 python -m venv .venv
@@ -118,6 +118,13 @@ This is a memory-equivalent convenience setting, not the exact reported run.
 The default recipe requires approximately 56 GB of GPU memory.
 
 ## Fine-tuning
+
+The exact adaptation and inference code recovered from the six validated
+FOMO26 TEST submissions is available in
+[`fomo26/submissions/`](fomo26/submissions/README.md). That release maps every
+submission ID to its submitted SIF, training recipe, inference entrypoint, and
+artifact checksum. It is the authoritative reference for submissions
+`9777066`–`9777071`.
 
 All downstream runs should start from the same pretrained checkpoint. Pass an
 absolute path so the run is independent of local run-ID databases.
