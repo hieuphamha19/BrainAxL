@@ -5,8 +5,6 @@ for 3D brain MRI**. The repository includes the model, masked-reconstruction +
 variance/covariance pretraining objective, and downstream classification,
 regression, and segmentation fine-tuning pipelines.
 
-**Code repository:** <https://github.com/trongduc-nguyen/fomo>
-
 BrainAxL is implemented on top of the open-source
 [Asparagus](https://github.com/Sllambias/asparagus) medical-imaging framework.
 
