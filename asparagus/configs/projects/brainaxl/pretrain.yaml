@@ -1,0 +1,74 @@
+# @package _global_
+# Exact single-model recipe recovered from the published BrainAxL checkpoint.
+defaults:
+  - /default_pretrain
+  - /model/brainaxl_b@model
+  - _self_
+
+hydra:
+  run:
+    dir: ${oc.env:ASPARAGUS_MODELS}/brainaxl/pretrain/run_id=${run_id}
+
+task: PT903_FOMO300K_FULL_COV64_R2
+root: brainaxl
+stem: brainaxl_b_mae_vicreg
+
+data:
+  train_split: split_95_5_0
+  fold: 0
+
+training:
+  patch_size: [64, 64, 64]
+  batch_size: 128
+  accumulate_grad_batches: 1
+  seed: 42
+  mask_ratio: 0.6
+  max_samples: 290912
+  steps_per_epoch: 1733
+  val_steps_per_epoch: 60
+  steps: 34660
+  warmup_epochs: 0
+  decoder_warmup_epochs: 0
+  rec_loss_masked_only: false
+  check_val_every_n_epoch: 1
+  reconstruction_loss: mse
+  global_weight: 0.01
+  vicreg_sim_weight: 0.0
+  vicreg_var_weight: 1.0
+  vicreg_cov_weight: 0.04
+  vicreg_eps: 0.0001
+  vicreg_warmup_steps: 0
+  semantic_projection_dim: 512
+  global_distill_weight: 0.0
+  dense_consistency_weight: 0.0
+
+model:
+  ckpt_every_n_epoch: 1
+  pretrain_lr: 0.0001
+  weight_decay: 0.00003
+  use_skip_connections: true
+
+hardware:
+  accelerator: gpu
+  num_nodes: 1
+  num_devices: 1
+  num_workers: 8
+  precision: bf16-mixed
+  strategy: auto
+  compile_mode:
+
+transforms:
+  cpu_tr_transforms: pretrain_CPU_train_transforms
+  cpu_val_transforms: pretrain_CPU_val_transforms
+  gpu_tr_transforms: pretrain_GPU_train_transforms_reduced_artifact
+  gpu_val_transforms: pretrain_GPU_val_transforms
+  masking: true
+  normalize: true
+
+logger:
+  progress_bar: true
+  wandb_logging: false
+  mlflow_logging: false
+  log_every_n_steps: 20
+  log_images_every_n_epoch: 999
+  log_to_stdout: true

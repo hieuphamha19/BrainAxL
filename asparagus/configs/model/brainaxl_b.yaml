@@ -1,0 +1,9 @@
+defaults:
+  - core/brainaxl@
+
+dimensions: 3D
+pretrain_net: brainaxl_b
+seg_net: brainaxl_b
+cls_net: brainaxl_b_semantic_clsreg
+plugin_seg_net:
+plugin_seg_train_n_last_params:

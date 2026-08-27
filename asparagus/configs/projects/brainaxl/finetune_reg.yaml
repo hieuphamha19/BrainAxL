@@ -1,0 +1,37 @@
+# @package _global_
+defaults:
+  - /default_finetune_reg
+  - /model/brainaxl_b@model
+  - /hardware/1gpu40cpu@hardware
+  - _self_
+
+task: REGR002_FOMO26_BrainAge
+checkpoint_path: ???
+checkpoint_run_id:
+load_checkpoint_name: last.ckpt
+root: brainaxl
+stem: brainaxl_reg
+
+data:
+  train_split: split_80_10_10
+  test_split: TEST_80_10_10
+  fold: 0
+
+training:
+  seed: 42
+  batch_size: 2
+  load_decoder: false
+
+model:
+  late_fusion: true
+  decoder_dropout_rate: 0.2
+
+hardware:
+  num_devices: 1
+  num_workers: 8
+  compile_mode:
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false
+  log_every_n_steps: 50

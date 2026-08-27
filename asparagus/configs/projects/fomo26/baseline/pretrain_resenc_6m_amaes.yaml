@@ -1,0 +1,25 @@
+# @package _global_
+defaults:
+  - /projects/datapaper/pretrain/resenc_6m_amaes
+  - _self_
+
+task: PT902_FOMO300K_HF
+root: fomo26
+stem: pretrain_resenc_6m_amaes
+
+data:
+  train_split: split_99_01_00
+  fold: 0
+
+hardware:
+  num_devices: 1
+  num_workers: 40
+
+training:
+  batch_size: 4
+  accumulate_grad_batches: 1
+  max_samples: 1000000
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false

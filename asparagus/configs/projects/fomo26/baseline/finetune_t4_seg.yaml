@@ -1,0 +1,28 @@
+# @package _global_
+defaults:
+  - /default_finetune_seg
+  - /model/resenc_unet_b@model
+  - /hardware/1gpu40cpu@hardware
+  - _self_
+
+task: SEG010_FOMO26_TrigeminalNeuralgia
+checkpoint_run_id:
+load_checkpoint_name: last.ckpt
+root: fomo26
+stem: t4_seg
+
+data:
+  train_split: split_80_10_10
+  test_split: TEST_80_10_10
+  fold: 0
+
+hardware:
+  num_devices: 1
+  num_workers: 2
+
+training:
+  batch_size: 1
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false

@@ -1,0 +1,49 @@
+# @package _global_
+defaults:
+  - /default_train_seg
+  - /model/resenc_unet_b@model
+  - /hardware/1gpu40cpu@hardware
+  - _self_
+
+hydra:
+  run:
+    dir: ${oc.env:ASPARAGUS_MODELS}/smoke_hydra/task4_seg_gpu_b1/run_id=${run_id}
+
+task: SEG010_FOMO26_TrigeminalNeuralgia
+root: smoke
+stem: task4_seg_gpu_b1
+
+data:
+  train_split: split_80_10_10
+  test_split: TEST_80_10_10
+  fold: 0
+
+training:
+  epochs: 1
+  batch_size: 1
+  warmup_epochs: 0
+  decoder_warmup_epochs: 0
+  train_batches_per_epoch_per_device: 1
+  val_batches_per_epoch_per_device: 1
+  patch_size: [64, 64, 64]
+  check_val_every_n_epoch: 1
+  accumulate_grad_batches: 1
+
+model:
+  ckpt_every_n_epoch: 1
+  deep_supervision: false
+  min_test_patch_size: [64, 64, 64]
+
+hardware:
+  accelerator: gpu
+  num_devices: 1
+  num_workers: 2
+  precision: 32-true
+  compile_mode:
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false
+  log_every_n_steps: 1
+  log_images_every_n_epoch: 999
+  log_to_stdout: true

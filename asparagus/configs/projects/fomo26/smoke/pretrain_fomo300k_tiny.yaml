@@ -1,0 +1,44 @@
+# @package _global_
+defaults:
+  - /projects/datapaper/pretrain/resenc_6m_amaes
+  - _self_
+
+hydra:
+  run:
+    dir: ${oc.env:ASPARAGUS_MODELS}/smoke_hydra/pretrain_fomo300k_tiny/run_id=${run_id}
+
+task: PT902_FOMO300K_TINY_SMOKE
+root: smoke
+stem: pretrain_fomo300k_tiny
+
+data:
+  train_split: split_99_01_00
+  fold: 0
+
+training:
+  batch_size: 1
+  accumulate_grad_batches: 1
+  patch_size: [64, 64, 64]
+  max_samples: 2
+  steps: 2
+  steps_per_epoch: 2
+  val_steps_per_epoch: 1
+  warmup_epochs: 0
+  check_val_every_n_epoch: 1
+
+model:
+  ckpt_every_n_epoch: 1
+
+hardware:
+  accelerator: gpu
+  num_devices: 1
+  num_workers: 2
+  precision: 32-true
+  compile_mode:
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false
+  log_every_n_steps: 1
+  log_images_every_n_epoch: 999
+  log_to_stdout: true

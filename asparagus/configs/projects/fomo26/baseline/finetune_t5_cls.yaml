@@ -1,0 +1,28 @@
+# @package _global_
+defaults:
+  - /default_finetune_cls
+  - /model/resenc_unet_b_clsreg@model
+  - /hardware/1gpu40cpu@hardware
+  - _self_
+
+task: CLS003_FOMO26_Polymicrogyria
+checkpoint_run_id:
+load_checkpoint_name: last.ckpt
+root: fomo26
+stem: t5_cls
+
+data:
+  train_split: split_80_10_10
+  test_split: TEST_80_10_10
+  fold: 0
+
+hardware:
+  num_devices: 1
+  num_workers: 2
+
+training:
+  batch_size: 2
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false

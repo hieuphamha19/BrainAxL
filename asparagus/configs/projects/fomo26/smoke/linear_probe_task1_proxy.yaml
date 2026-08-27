@@ -1,0 +1,45 @@
+# @package _global_
+defaults:
+  - /default_linear_probe
+  - /model/resenc_unet_b_clsreg@model
+  - /hardware/1gpu40cpu@hardware
+  - _self_
+
+hydra:
+  run:
+    dir: ${oc.env:ASPARAGUS_MODELS}/smoke_hydra/linear_probe_task1_proxy/run_id=${run_id}
+
+task: CLS002_FOMO26_Infarct
+checkpoint_run_id:
+load_checkpoint_name: last.ckpt
+root: smoke
+stem: task1_linear_probe_proxy
+
+data:
+  train_split: split_80_10_10
+  test_split: TEST_80_10_10
+  fold: 0
+
+training:
+  max_epochs: 1
+  batch_size: 2
+  limit_train_batches: 2
+  limit_val_batches: 1
+  target_size: [32, 32, 32]
+  check_val_every_n_epoch: 1
+  accumulate_grad_batches: 1
+  probing:
+    learning_rates: [1e-3]
+
+hardware:
+  accelerator: gpu
+  num_devices: 1
+  num_workers: 2
+  precision: 32-true
+  compile_mode:
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false
+  log_every_n_steps: 1
+  log_images_every_n_epoch: 999

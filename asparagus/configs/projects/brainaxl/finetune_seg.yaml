@@ -1,0 +1,32 @@
+# @package _global_
+defaults:
+  - /default_finetune_seg
+  - /model/brainaxl_b@model
+  - /hardware/1gpu40cpu@hardware
+  - _self_
+
+task: SEG009_FOMO26_Meningioma
+checkpoint_path: ???
+checkpoint_run_id:
+load_checkpoint_name: last.ckpt
+root: brainaxl
+stem: brainaxl_seg
+
+data:
+  train_split: split_80_10_10
+  test_split: TEST_80_10_10
+  fold: 0
+
+training:
+  seed: 42
+  batch_size: 1
+  load_decoder: false
+
+hardware:
+  num_devices: 1
+  num_workers: 8
+  compile_mode:
+
+logger:
+  wandb_logging: false
+  mlflow_logging: false
