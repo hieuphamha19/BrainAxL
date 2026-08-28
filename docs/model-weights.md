@@ -62,8 +62,8 @@ The historical `lstm-s512/` and `resencb-s512/` paths remain in the model repo
 for compatibility. New BrainAxL code should use the organized `pretraining/`
 and `finetuning/` paths.
 
-## Embargo automation
+## Publication
 
-The [publication workflow](../.github/workflows/publish-hf-weights.yml) targets
-only `hieuphamha/BrainAxL` and refuses to change visibility
-before `2026-08-31T08:00:00Z`. It never targets the SIF repository.
+Visibility is changed manually after the embargo and a final disclosure audit.
+No Hugging Face token is stored in GitHub, and no automated workflow can alter
+the model repository or the separate SIF repository.
