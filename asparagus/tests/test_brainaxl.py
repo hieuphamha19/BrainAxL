@@ -1,8 +1,6 @@
 import gc
-
 import pytest
 import torch
-
 from asparagus.modules.networks.brainaxl import AxialBiLSTM3D, brainaxl_b
 from asparagus.modules.networks.dolphins_xlstm_unet import (
     BidirectionalAxialLSTM3D,

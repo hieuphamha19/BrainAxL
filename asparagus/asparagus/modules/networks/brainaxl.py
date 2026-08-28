@@ -6,11 +6,10 @@ contains the architecture used for both self-supervised pretraining and
 downstream fine-tuning; experiment-specific variants live outside this module.
 """
 
-from collections.abc import Sequence
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from collections.abc import Sequence
 from gardening_tools.modules.networks.BaseNet import BaseNet
 from gardening_tools.modules.networks.components.blocks import (
     MultiLayerConvDropoutNormNonlin,
@@ -190,9 +189,7 @@ class BrainAxL(BaseNet):
         pooled = []
         for feature in features:
             spatial_dims = tuple(range(2, feature.ndim))
-            pooled.extend(
-                [feature.mean(dim=spatial_dims), feature.amax(dim=spatial_dims)]
-            )
+            pooled.extend([feature.mean(dim=spatial_dims), feature.amax(dim=spatial_dims)])
         return torch.cat(pooled, dim=1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -202,9 +199,7 @@ class BrainAxL(BaseNet):
         features = self.encoder(x)
         return self.decoder(features), features[-1]
 
-    def forward_with_multiscale_features(
-        self, x: torch.Tensor
-    ) -> tuple[torch.Tensor, torch.Tensor, list[torch.Tensor]]:
+    def forward_with_multiscale_features(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor, list[torch.Tensor]]:
         features = self.encoder(x)
         return self.decoder(features), self.pool_multiscale(features), features
 
@@ -269,11 +264,7 @@ class BrainAxLSemanticCLSREG(BaseNet):
             starting_filters=starting_filters,
             xlstm_stages=xlstm_stages,
         )
-        self.fusion_gate = (
-            nn.Linear(self.semantic_feature_dim, 1)
-            if late_fusion and gated_late_fusion
-            else None
-        )
+        self.fusion_gate = nn.Linear(self.semantic_feature_dim, 1) if late_fusion and gated_late_fusion else None
         self.decoder = SemanticHead(
             input_channels=self.semantic_feature_dim,
             output_channels=output_channels,

@@ -4,3 +4,4 @@ omegaconf==2.3.0
 scipy==1.15.3
 scikit-learn>=1.5,<2
 monai==1.5.2
+gardening_tools @ git+https://github.com/Sllambias/gardening_tools.git@6b15c7ee48c5349a21610202daa2acd870b85246

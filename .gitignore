@@ -31,6 +31,14 @@ predictions/
 **/.ipynb_checkpoints/
 *.egg-info/
 **/*.egg-info/
+.pytest_cache/
+**/.pytest_cache/
+.ruff_cache/
+**/.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
 
 # Local/generated data if ever placed inside the repo
 data/

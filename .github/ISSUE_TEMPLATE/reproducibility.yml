@@ -1,0 +1,39 @@
+name: Reproducibility question
+description: Ask about a published config, checkpoint mapping, or FOMO26 recipe.
+title: "[Reproducibility]: "
+labels: [reproducibility]
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Self-supervised pretraining
+        - Generic downstream fine-tuning
+        - FOMO26 submission 9777066
+        - FOMO26 submission 9777067
+        - FOMO26 submission 9777068
+        - FOMO26 submission 9777069
+        - FOMO26 submission 9777070
+        - FOMO26 submission 9777071
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Include the config, command, manifest entry, or source checksum involved.
+    validations:
+      required: true
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What you tried
+      description: Share safe commands and logs without data or credentials.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Data-safety confirmation
+      options:
+        - label: I did not include patient data, restricted data, credentials, or checkpoints.
+          required: true

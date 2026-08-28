@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: >-
+  If you use BrainAxL or its FOMO26 reproduction code, please cite this
+  software release. Paper citation metadata will be added when available.
+type: software
+title: "BrainAxL: A Multiscale Axial LSTM Foundation Model for 3D Brain MRI"
+version: 1.0.0
+date-released: 2026-08-28
+authors:
+  - name: CVMAIL_VinUni
+repository-code: "https://github.com/hieuphamha19/BrainAxL"
+url: "https://github.com/hieuphamha19/BrainAxL"
+license: Apache-2.0
+keywords:
+  - brain MRI
+  - foundation model
+  - self-supervised learning
+  - axial LSTM
+  - medical image analysis

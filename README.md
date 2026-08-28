@@ -1,12 +1,28 @@
 # BrainAxL
 
+[![CI](https://github.com/hieuphamha19/BrainAxL/actions/workflows/ci.yml/badge.svg)](https://github.com/hieuphamha19/BrainAxL/actions/workflows/ci.yml)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
+
 Official PyTorch code for **BrainAxL: a multiscale axial LSTM foundation model
 for 3D brain MRI**. The repository includes the model, masked-reconstruction +
 variance/covariance pretraining objective, and downstream classification,
 regression, and segmentation fine-tuning pipelines.
 
 BrainAxL is implemented on top of the open-source
-[Asparagus](https://github.com/Sllambias/asparagus) medical-imaging framework.
+[Asparagus](https://github.com/Sllambias/asparagus) medical-imaging framework
+and its [gardening_tools](https://github.com/Sllambias/gardening_tools)
+components. The latter is pinned to a public Git commit because it is not
+distributed through PyPI.
+
+[Installation](#installation) · [Pretraining](#self-supervised-pretraining) ·
+[Fine-tuning](#fine-tuning) · [FOMO26 submissions](fomo26/submissions/README.md) ·
+[Reproducibility](docs/reproducibility.md) · [Contributing](CONTRIBUTING.md)
+
+> [!IMPORTANT]
+> BrainAxL is research software and is not approved for clinical diagnosis or
+> treatment. MRI data, checkpoints, and challenge artifacts are not distributed
+> in this repository.
 
 ## Method at a glance
 
@@ -43,6 +59,12 @@ asparagus/configs/projects/brainaxl/
 
 asparagus_preprocessing/
     Dataset conversion and preprocessing tools.
+
+fomo26/submissions/
+    Versioned adaptation and exact inference code for validated TEST artifacts.
+
+scripts/verify_release.py
+    Dependency-free provenance, syntax, and repository-hygiene gate.
 ```
 
 The older internal name `dolphins_xlstm_unet` is retained only for checkpoint
@@ -126,6 +148,9 @@ submission ID to its submitted SIF, training recipe, inference entrypoint, and
 artifact checksum. It is the authoritative reference for submissions
 `9777066`–`9777071`.
 
+The commands below are reusable public baseline templates. They are not a
+replacement for the versioned submission-specific recipes above.
+
 All downstream runs should start from the same pretrained checkpoint. Pass an
 absolute path so the run is independent of local run-ID databases.
 
@@ -192,17 +217,22 @@ requested.
 
 ## Verification
 
-Run the lightweight architecture and compatibility tests from the repository
-root:
+Run the dependency-free release-integrity gate from the repository root:
 
 ```bash
-python -m pytest asparagus/tests/test_brainaxl.py
-python -m compileall -q asparagus/asparagus
+python scripts/verify_release.py
 ```
 
-The test suite checks tensor shape/gradient behavior, published parameter
-counts, and state-dictionary compatibility with checkpoints saved under the
-historical model name.
+Then run the lightweight architecture and compatibility tests:
+
+```bash
+PYTHONPATH=asparagus python -m pytest asparagus/tests/test_brainaxl.py
+```
+
+Equivalently, `make check` runs both gates. The test suite checks tensor
+shape/gradient behavior, published parameter counts, and state-dictionary
+compatibility with checkpoints saved under the historical model name. Root CI
+runs these checks for every push and pull request.
 
 ## Reproducibility details
 
@@ -223,9 +253,27 @@ historical model name.
 Additional methodological details are documented in
 [`BrainAxL_SSL_Framework.md`](BrainAxL_SSL_Framework.md).
 
+For artifact boundaries, checkpoint contracts, and the distinction between
+generic configs and exact TEST submissions, see the
+[reproducibility guide](docs/reproducibility.md).
+
+## Citation
+
+Citation metadata is provided in [`CITATION.cff`](CITATION.cff), which GitHub
+exposes through **Cite this repository**. Paper-specific authors, venue, and DOI
+will be added when finalized.
+
+## Project policies
+
+- Contributions: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Security and clinical-use notice: [`SECURITY.md`](SECURITY.md)
+- Community expectations: [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
+- Release history: [`CHANGELOG.md`](CHANGELOG.md)
+
 ## License and attribution
 
-Code under `asparagus/` is distributed under the Apache License 2.0; see
+BrainAxL is distributed under the Apache License 2.0; see [`LICENSE`](LICENSE).
+The vendored Asparagus code retains its license in
 [`asparagus/LICENSE`](asparagus/LICENSE). Please also cite the upstream
-Asparagus project and the BrainAxL paper when using this implementation. A
-machine-readable citation will be added when the paper metadata is final.
+Asparagus project when using this implementation. Attribution details are in
+[`NOTICE`](NOTICE).

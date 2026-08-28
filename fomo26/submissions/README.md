@@ -42,9 +42,11 @@ python -m pip install -r fomo26/submissions/requirements.txt
 Run a syntax check without checkpoints or challenge data:
 
 ```bash
-python -m compileall -q fomo26/submissions
+python scripts/verify_release.py
 ```
 
 See each task directory for inputs, checkpoint layout, training, and inference
 commands. `artifact_manifest.json` provides a machine-readable mapping from
-submission IDs to SIF and source hashes.
+submission IDs to SIF and source hashes. The repository-wide
+[`reproducibility guide`](../../docs/reproducibility.md) documents artifact
+boundaries and the policy for publishing future versions.
