@@ -28,3 +28,6 @@ python predict.py --flair flair.nii.gz --dwi dwi.nii.gz \
 Folds 0–1 came from the confirmation run and folds 2–4 from the original run;
 their stored Hydra overrides are identical. The five submitted checkpoints are
 an ensemble, not five independent submission variants.
+
+Selected epochs and per-fold validation metrics are published in
+[`training_logs/task2_9777071_folds.csv`](../../../training_logs/task2_9777071_folds.csv).

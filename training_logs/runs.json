@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "scope": "Sanitized training and local-validation records; no hidden TEST metrics",
+  "pretraining": {
+    "run_id": 19726,
+    "model": "BrainAxL-B (historical config name: dolphins_xlstm_unet_b)",
+    "task": "PT903_FOMO300K_FULL_COV64_R2",
+    "adaptation": "self-supervised pretraining",
+    "epochs": 20,
+    "optimizer_updates": 34660,
+    "batch_size": 128,
+    "patch_size": [64, 64, 64],
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.00003,
+      "schedule": "cosine",
+      "warmup_epochs": 0
+    },
+    "precision": "bf16-mixed",
+    "mask_ratio": 0.6,
+    "objective": {
+      "reconstruction": "MSE",
+      "semantic_projection_dim": 512,
+      "vicreg_weight": 0.01,
+      "vicreg_variance_weight": 1.0,
+      "vicreg_covariance_weight": 0.04,
+      "vicreg_invariance_weight": 0.0
+    },
+    "recorded_start": "2026-06-11 22:31:35",
+    "recorded_end": "2026-06-14 16:04:29",
+    "lowest_observed_val_loss": {
+      "epoch": 17,
+      "loss": 0.10584057867527008,
+      "reconstruction_loss": 0.10388627648353577,
+      "weighted_vicreg_loss": 0.001954314298927784
+    },
+    "final_epoch": {
+      "epoch": 19,
+      "val_loss": 0.10812661051750183,
+      "val_reconstruction_loss": 0.1061784029006958,
+      "val_weighted_vicreg_loss": 0.0019482155330479145,
+      "val_ssim_3d": 0.6169633865356445,
+      "val_embedding_effective_rank": 460.9679870605469,
+      "val_zero_variance_dimensions_pct": 0.0
+    },
+    "epoch_log": "pretraining_run19726_epochs.csv"
+  },
+  "submissions": [
+    {
+      "submission_id": 9777066,
+      "task": "Task 1: infarct detection",
+      "adaptation": "frozen encoder plus two balanced logistic heads",
+      "training_subjects": 21,
+      "regularization_c": 0.05,
+      "selected_local_validation": {
+        "metric": "AUROC",
+        "nested_outer": 0.9038,
+        "leave_one_out": 0.9327,
+        "repeated_5_fold_20_seed_mean": 0.9139,
+        "repeated_5_fold_20_seed_std": 0.0205
+      },
+      "epoch_log": null,
+      "no_epoch_log_reason": "Deterministic scikit-learn head fit on frozen features"
+    },
+    {
+      "submission_id": 9777071,
+      "task": "Task 2: meningioma segmentation",
+      "adaptation": "five-fold full fine-tuning",
+      "epochs_per_fold": 80,
+      "batch_size": 1,
+      "patch_size": [160, 160, 32],
+      "encoder_learning_rate": 0.0000962411,
+      "decoder_learning_rate": 0.0004812056,
+      "loss": "MONAI generalized Dice focal",
+      "checkpoint_monitor": "val/foreground_dsc_nsd_mean",
+      "checkpoint_mode": "max",
+      "selected_fold_mean": {
+        "dice": 0.2208188891,
+        "nsd": 0.2329798952,
+        "dice_nsd_mean": 0.2268993869
+      },
+      "fold_log": "task2_9777071_folds.csv"
+    },
+    {
+      "submission_id": 9777067,
+      "task": "Task 3: brain-age regression",
+      "run_id": 25919,
+      "adaptation": "five-fold full fine-tuning",
+      "epochs_per_fold": 60,
+      "batch_size": 2,
+      "patch_size": [128, 128, 128],
+      "fold_seeds": [4610, 4611, 4612, 4613, 4614],
+      "encoder_learning_rate": 0.0001,
+      "head_learning_rate": 0.001,
+      "loss": "MSE",
+      "best_val_mse_by_fold": [
+        {"fold": 0, "epoch": 53, "val_mse": 37.86679458618164},
+        {"fold": 1, "epoch": 21, "val_mse": 41.798927307128906},
+        {"fold": 2, "epoch": 55, "val_mse": 44.98405838012695},
+        {"fold": 3, "epoch": 37, "val_mse": 42.23737335205078},
+        {"fold": 4, "epoch": 59, "val_mse": 34.19371795654297}
+      ],
+      "out_of_fold_evaluation": {
+        "cases": 494,
+        "mae": 4.8398,
+        "rmse": 6.3408,
+        "pearson_r": 0.9320,
+        "r2": 0.8676,
+        "mean_bias": 0.4795
+      },
+      "epoch_log": "task3_9777067_epochs.csv"
+    },
+    {
+      "submission_id": 9777068,
+      "task": "Task 4: trigeminal neuralgia segmentation",
+      "run_id": 21791,
+      "adaptation": "one-fold full fine-tuning",
+      "epochs": 200,
+      "validation_frequency_epochs": 2,
+      "batch_size": 1,
+      "patch_size": [128, 96, 96],
+      "learning_rate": 0.0002,
+      "loss": "generalized Dice focal",
+      "checkpoint_monitor": "val/foreground_dice_mean",
+      "checkpoint_mode": "max",
+      "best_validation": {
+        "epoch": 165,
+        "foreground_dice_mean": 0.5486382246017456,
+        "dice_class_1": 0.6938302516937256,
+        "dice_class_2": 0.4034462571144104
+      },
+      "epoch_log": "task4_9777068_epochs.csv"
+    },
+    {
+      "submission_id": 9777069,
+      "task": "Task 5: polymicrogyria classification",
+      "adaptation": "frozen encoder plus balanced logistic head",
+      "training_subjects": 48,
+      "training_feature_rows": 96,
+      "regularization_c": 0.05,
+      "selected_local_validation": {
+        "metric": "AUROC",
+        "defaced_domain": 0.7673611111111112,
+        "original_domain": 0.9461805555555556
+      },
+      "epoch_log": null,
+      "no_epoch_log_reason": "Deterministic scikit-learn head fit on frozen features"
+    },
+    {
+      "submission_id": 9777070,
+      "task": "Tasks 6/7: linear probing and bias/fairness",
+      "adaptation": "frozen 1024-dimensional embedding extractor",
+      "epoch_log": null,
+      "no_epoch_log_reason": "No task-label training; the challenge evaluator fits the downstream probe"
+    }
+  ]
+}

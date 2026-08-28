@@ -21,3 +21,6 @@ components per class, and hole filling.
 export FOMO26_TASK4_CHECKPOINT=/path/to/best.ckpt
 python predict.py --t2 t2.nii.gz --output segmentation.nii.gz
 ```
+
+The sanitized 200-epoch history is published in
+[`training_logs/task4_9777068_epochs.csv`](../../../training_logs/task4_9777068_epochs.csv).

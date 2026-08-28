@@ -25,3 +25,6 @@ python predict.py --t1 t1.nii.gz --output probability.txt
 `train_domains.csv` columns are `subject_id,t1,label,domain`; every subject must
 have one `original` row and one `defaced` row. The feature extractor imports the
 submitted inference preprocessing so training/inference geometry cannot drift.
+
+This deterministic fit has no epoch history; its selected validation summary
+is recorded in [`training_logs/runs.json`](../../../training_logs/runs.json).

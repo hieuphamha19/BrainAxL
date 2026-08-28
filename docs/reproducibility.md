@@ -12,9 +12,15 @@ auditable without redistributing restricted data or multi-gigabyte weights.
 | Pretraining recipe | BrainAxL Hydra config and method specification | Processed FOMO300K data |
 | Generic fine-tuning | Classification, regression, and segmentation configs | Processed downstream data and pretrained checkpoint |
 | FOMO26 TEST submissions | Versioned training/adaptation code, exact SIF inference source, manifests | Challenge data and recorded checkpoints |
+| Training evidence | Sanitized epoch CSVs and selected-checkpoint summaries | None for inspection; data/checkpoints for reruns |
 
 The repository does not contain MRI data, subject metadata, checkpoints, SIF
 images, cached embeddings, or predictions.
+
+The public [`training_logs/`](../training_logs/README.md) directory records the
+reported pretraining history, full-fine-tuning histories for Tasks 3 and 4,
+selected fold manifests for Task 2, and fit summaries for frozen-probe Tasks 1
+and 5. These are local-validation records, not hidden TEST metrics.
 
 ## Canonical configuration
 
@@ -65,6 +71,10 @@ Git.
 Published state dictionaries retain historical key names. The public model
 keeps those names intentionally, and `asparagus/tests/test_brainaxl.py` guards
 shape-level compatibility.
+
+Selected pretrained and downstream state dictionaries are consolidated in one
+[Hugging Face model repository](model-weights.md). The GitHub repository stores
+their layout and provenance but deliberately excludes the binary weights.
 
 ## Adding a new artifact version
 

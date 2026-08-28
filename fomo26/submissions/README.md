@@ -50,3 +50,8 @@ commands. `artifact_manifest.json` provides a machine-readable mapping from
 submission IDs to SIF and source hashes. The repository-wide
 [`reproducibility guide`](../../docs/reproducibility.md) documents artifact
 boundaries and the policy for publishing future versions.
+
+The repository-wide [training guide](../../docs/training.md) explains the
+complete optimization and adaptation flow. Sanitized epoch histories and
+checkpoint-selection records are indexed in
+[`training_logs/`](../../training_logs/README.md).

@@ -15,14 +15,20 @@ and its [gardening_tools](https://github.com/Sllambias/gardening_tools)
 components. The latter is pinned to a public Git commit because it is not
 distributed through PyPI.
 
-[Installation](#installation) · [Pretraining](#self-supervised-pretraining) ·
-[Fine-tuning](#fine-tuning) · [FOMO26 submissions](fomo26/submissions/README.md) ·
+[Installation](#installation) · [Training guide](docs/training.md) ·
+[Training logs](training_logs/README.md) · [Model weights](docs/model-weights.md) ·
+[FOMO26 submissions](fomo26/submissions/README.md) ·
 [Reproducibility](docs/reproducibility.md) · [Contributing](CONTRIBUTING.md)
 
 > [!IMPORTANT]
 > BrainAxL is research software and is not approved for clinical diagnosis or
 > treatment. MRI data, checkpoints, and challenge artifacts are not distributed
 > in this repository.
+
+> [!NOTE]
+> Selected weights are consolidated at
+> [Hugging Face](https://huggingface.co/hieuphamha/BrainAxL).
+> The model repo remains private until the FOMO26 TEST deadline has passed.
 
 ## Method at a glance
 
@@ -147,6 +153,12 @@ FOMO26 TEST submissions is available in
 submission ID to its submitted SIF, training recipe, inference entrypoint, and
 artifact checksum. It is the authoritative reference for submissions
 `9777066`–`9777071`.
+
+For an end-to-end explanation of checkpoint initialization, full fine-tuning,
+frozen probing, checkpoint selection, and the exact submitted recipes, see the
+dedicated [training guide](docs/training.md). Sanitized per-epoch logs and
+machine-readable run summaries are published in
+[`training_logs/`](training_logs/README.md).
 
 The commands below are reusable public baseline templates. They are not a
 replacement for the versioned submission-specific recipes above.

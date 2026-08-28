@@ -17,3 +17,7 @@ python predict.py --input image.nii.gz --output embedding.npy
 The `predict.py` here was recovered from `task6.sif`. It is the semantic-projector
 64/32 recipe used in submission 9777070, not the later encoder-pooled 96/32
 development variant.
+
+Because labels are never used by this artifact, there is no local training
+epoch log; this is made explicit in
+[`training_logs/runs.json`](../../../training_logs/runs.json).

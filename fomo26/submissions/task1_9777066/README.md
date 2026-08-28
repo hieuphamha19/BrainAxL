@@ -21,3 +21,6 @@ python predict.py --flair flair.nii.gz --adc adc.nii.gz \
 
 `train.csv` columns are `subject_id,flair,adc,dwi_b1000,label`. The output head
 and run-19726 checkpoint occupy `/app/models/` in the submitted image.
+
+This deterministic fit has no epoch history; its local-validation summary is
+recorded in [`training_logs/runs.json`](../../../training_logs/runs.json).

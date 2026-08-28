@@ -23,3 +23,6 @@ python predict.py --t1 t1.nii.gz --output brain_age.txt
 
 The submitted checkpoint family is run 25919, not the older whole-volume crop
 recipe that appeared in an earlier Task 3 image.
+
+The sanitized five-fold epoch history is published in
+[`training_logs/task3_9777067_epochs.csv`](../../../training_logs/task3_9777067_epochs.csv).

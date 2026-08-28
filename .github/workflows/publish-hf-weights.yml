@@ -1,0 +1,49 @@
+name: Publish embargoed Hugging Face weights
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 8 31 8 *"
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: github.repository == 'hieuphamha19/BrainAxL'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce embargo and publish foundation-model repo
+        env:
+          HF_TOKEN: \${{ secrets.HF_TOKEN }}
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import json
+          import os
+          import urllib.request
+
+          cutoff = dt.datetime(2026, 8, 31, 8, 0, tzinfo=dt.timezone.utc)
+          now = dt.datetime.now(dt.timezone.utc)
+          if now < cutoff:
+              raise SystemExit(f"Embargo active until {cutoff.isoformat()}")
+          token = os.environ.get("HF_TOKEN")
+          if not token:
+              raise SystemExit("HF_TOKEN secret is not configured")
+
+          request = urllib.request.Request(
+              "https://huggingface.co/api/repos/hieuphamha/BrainAxL/settings",
+              data=json.dumps({"private": False}).encode(),
+              headers={
+                  "Authorization": f"Bearer {token}",
+                  "Content-Type": "application/json",
+              },
+              method="PUT",
+          )
+          with urllib.request.urlopen(request) as response:
+              if response.status not in {200, 204}:
+                  raise SystemExit(
+                      f"Unexpected Hugging Face status: {response.status}"
+                  )
+          print("Foundation-model repository is public")
+          PY

@@ -5,6 +5,16 @@ All notable public-release changes are documented here. This project follows
 
 ## [Unreleased]
 
+### Added
+
+- End-to-end pretraining, full fine-tuning, frozen-probe, and frozen-embedding
+  documentation.
+- Sanitized pretraining and downstream epoch logs, selected fold metrics, and
+  a machine-readable run index for submissions 9777066–9777071.
+- A single organized Hugging Face weight repository, download guide, and
+  checksum manifest, plus deadline-gated publication limited to the
+  foundation-model repository.
+
 ## [1.0.0] - 2026-08-28
 
 ### Added

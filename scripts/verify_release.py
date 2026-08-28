@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import re
@@ -15,6 +16,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 SUBMISSIONS = REPO_ROOT / "fomo26" / "submissions"
 MANIFEST = SUBMISSIONS / "artifact_manifest.json"
 SOURCE_HASHES = SUBMISSIONS / "sources.sha256"
+TRAINING_LOGS = REPO_ROOT / "training_logs"
 EXPECTED_SUBMISSIONS = {
     9777066: ("task1_ens.sif", "task1_9777066/predict.py"),
     9777067: ("task3_v2_spacing1mm.sif", "task3_9777067/predict.py"),
@@ -144,12 +146,41 @@ def verify_json() -> int:
     return count
 
 
+def verify_training_logs() -> int:
+    summary = json.loads((TRAINING_LOGS / "runs.json").read_text(encoding="utf-8"))
+    require(summary.get("schema_version") == 1, "unexpected training-log schema")
+    submissions = summary.get("submissions", [])
+    ids = {int(entry["submission_id"]) for entry in submissions}
+    require(
+        ids == set(EXPECTED_SUBMISSIONS),
+        "training summary does not contain exactly submissions 9777066-9777071",
+    )
+
+    expected_rows = {
+        "pretraining_run19726_epochs.csv": 20,
+        "task2_9777071_folds.csv": 6,
+        "task3_9777067_epochs.csv": 300,
+        "task4_9777068_epochs.csv": 200,
+    }
+    total_rows = 0
+    for name, expected in expected_rows.items():
+        path = TRAINING_LOGS / name
+        require(path.is_file(), f"missing training log: {name}")
+        with path.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        require(len(rows) == expected, f"{name}: expected {expected} rows")
+        require(rows and all(rows[0]), f"{name}: missing CSV header")
+        total_rows += len(rows)
+    return total_rows
+
+
 def verify_local_markdown_links() -> int:
     count = 0
     owned_markdown = [
         *REPO_ROOT.glob("*.md"),
         *(REPO_ROOT / "docs").rglob("*.md"),
         *(REPO_ROOT / "fomo26").rglob("*.md"),
+        *TRAINING_LOGS.rglob("*.md"),
     ]
     for markdown in owned_markdown:
         for target in MARKDOWN_LINK.findall(markdown.read_text(encoding="utf-8")):
@@ -172,6 +203,10 @@ def verify_repository_identity() -> None:
     readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
     require("trongduc-nguyen/fomo" not in readme, "README contains stale repo URL")
     require("hieuphamha19/BrainAxL" in readme, "README missing canonical repo URL")
+    require(
+        "hieuphamha/BrainAxL" in readme,
+        "README missing canonical Hugging Face weight repo",
+    )
 
 
 def main() -> int:
@@ -182,6 +217,7 @@ def main() -> int:
         python_files = verify_python_syntax()
         shell_files = verify_shell_syntax()
         json_files = verify_json()
+        training_rows = verify_training_logs()
         local_links = verify_local_markdown_links()
         verify_repository_identity()
     except (
@@ -197,7 +233,8 @@ def main() -> int:
         "release verification passed: "
         f"{submissions} submissions, {protected_sources} protected sources, "
         f"{python_files} Python files, {shell_files} shell scripts, "
-        f"{json_files} JSON files, {local_links} local Markdown links"
+        f"{json_files} JSON files, {training_rows} training-log rows, "
+        f"{local_links} local Markdown links"
     )
     return 0
 
