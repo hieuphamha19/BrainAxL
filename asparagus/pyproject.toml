@@ -57,7 +57,7 @@ extras = [
     "gardening_tools[extras]>=0.1.1",
 ]
 test = [
-    "ruff>=0.14.8",
+    "ruff>=0.16.4",
     "pytest>=9.0.1"
 ]
 docs = [
