@@ -11,8 +11,9 @@ All notable public-release changes are documented here. This project follows
   documentation.
 - Sanitized pretraining and downstream epoch logs, selected fold metrics, and
   a machine-readable run index for submissions 9777066–9777071.
-- A single organized Hugging Face weight repository, download guide, and
-  checksum manifest, published manually after the challenge embargo.
+- A foundation-only Hugging Face model repository for BrainAxL-B run 19726,
+  with safe and compatibility formats, a model card, and checksum manifest,
+  published manually after the challenge embargo.
 
 ## [1.0.0] - 2026-08-28
 

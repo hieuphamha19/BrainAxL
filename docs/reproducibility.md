@@ -72,9 +72,11 @@ Published state dictionaries retain historical key names. The public model
 keeps those names intentionally, and `asparagus/tests/test_brainaxl.py` guards
 shape-level compatibility.
 
-Selected pretrained and downstream state dictionaries are consolidated in one
-[Hugging Face model repository](model-weights.md). The GitHub repository stores
-their layout and provenance but deliberately excludes the binary weights.
+The run-19726 foundation state dictionary is published in the
+[Hugging Face model repository](model-weights.md). Downstream state
+dictionaries are not part of that public release. GitHub retains the training
+and adaptation code, configurations, logs, and submission provenance while
+deliberately excluding binary weights.
 
 ## Adding a new artifact version
 

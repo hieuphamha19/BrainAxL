@@ -27,9 +27,10 @@ distributed through PyPI.
 > in this repository.
 
 > [!NOTE]
-> Selected weights are consolidated at
+> The canonical BrainAxL-B foundation checkpoint from run 19726 is available at
 > [Hugging Face](https://huggingface.co/hieuphamha/BrainAxL).
-> The model repository is public as of 3 September 2026.
+> The foundation-only model repository is public as of 3 September 2026;
+> downstream and submission-specific weights are not included.
 
 ## Method at a glance
 

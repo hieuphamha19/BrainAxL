@@ -44,11 +44,11 @@ during training; no TEST split was read. See the
 [20-epoch log](../training_logs/pretraining_run19726_epochs.csv) and
 [machine-readable summary](../training_logs/runs.json).
 
-The final submission family initializes from run 19726. Checkpoint files are
-not committed because of their size and the source data's access conditions.
-They are consolidated in the public
-[Hugging Face weight repository](model-weights.md), released after the FOMO26
-TEST deadline and a final disclosure audit.
+The final submission family initializes from run 19726. Its foundation
+checkpoint is published in the
+[Hugging Face model repository](model-weights.md), released after the FOMO26
+TEST deadline and a final disclosure audit. Task-specific trained weights are
+not part of that public foundation-model release.
 
 ## Full fine-tuning
 
