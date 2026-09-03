@@ -3,6 +3,7 @@
 [![CI](https://github.com/hieuphamha19/BrainAxL/actions/workflows/ci.yml/badge.svg)](https://github.com/hieuphamha19/BrainAxL/actions/workflows/ci.yml)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
+[![Model weights](https://img.shields.io/badge/%F0%9F%A4%97-model_weights-yellow.svg)](https://huggingface.co/hieuphamha/BrainAxL)
 
 Official PyTorch code for **BrainAxL: a multiscale axial LSTM foundation model
 for 3D brain MRI**. The repository includes the model, masked-reconstruction +
@@ -28,7 +29,7 @@ distributed through PyPI.
 > [!NOTE]
 > Selected weights are consolidated at
 > [Hugging Face](https://huggingface.co/hieuphamha/BrainAxL).
-> The model repo remains private until the FOMO26 TEST deadline has passed.
+> The model repository is public as of 3 September 2026.
 
 ## Method at a glance
 

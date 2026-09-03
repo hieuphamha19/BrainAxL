@@ -5,13 +5,9 @@ repository:
 
 **[hieuphamha/BrainAxL](https://huggingface.co/hieuphamha/BrainAxL)**
 
-The repository is private during the FOMO26 TEST embargo. The official
-deadline is 30 August 2026 at 11:59 PM Pacific. Publication must occur only
-after 31 August 2026 at 08:00 UTC and after a final disclosure audit.
-
-Only this foundation-model repository is scheduled for publication. The
-separate private repository containing submitted SIF images is outside the
-workflow's scope and remains private.
+The repository was made public on 3 September 2026, after the official FOMO26
+TEST deadline of 30 August 2026 at 11:59 PM Pacific. The separate repository
+containing submitted SIF images remains private.
 
 ## Artifact layout
 
@@ -44,7 +40,7 @@ SHA-256 hashes, submission IDs, task IDs, and folds, plus
 
 ## Download
 
-After the embargo, download only the artifact required for a task:
+Download only the artifact required for a task:
 
 ```python
 from huggingface_hub import hf_hub_download
@@ -55,15 +51,12 @@ checkpoint = hf_hub_download(
 )
 ```
 
-Before public release, authenticated team members can use the same call after
-logging in with a Hugging Face token that has access to the private repo.
-
 The historical `lstm-s512/` and `resencb-s512/` paths remain in the model repo
 for compatibility. New BrainAxL code should use the organized `pretraining/`
 and `finetuning/` paths.
 
 ## Publication
 
-Visibility is changed manually after the embargo and a final disclosure audit.
-No Hugging Face token is stored in GitHub, and no automated workflow can alter
-the model repository or the separate SIF repository.
+Visibility was changed manually after the embargo and a final disclosure
+audit. No Hugging Face token is stored in GitHub, and the separate SIF
+repository was not made public.

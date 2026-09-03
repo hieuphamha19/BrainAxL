@@ -46,9 +46,9 @@ during training; no TEST split was read. See the
 
 The final submission family initializes from run 19726. Checkpoint files are
 not committed because of their size and the source data's access conditions.
-They are consolidated in the embargoed
-[Hugging Face weight repository](model-weights.md), which becomes public only
-after the FOMO26 TEST deadline and a final disclosure audit.
+They are consolidated in the public
+[Hugging Face weight repository](model-weights.md), released after the FOMO26
+TEST deadline and a final disclosure audit.
 
 ## Full fine-tuning
 
