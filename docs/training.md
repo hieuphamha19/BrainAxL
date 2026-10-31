@@ -22,6 +22,10 @@ export ASPARAGUS_DATA=/absolute/path/to/processed/tasks
 
 ## Self-supervised pretraining
 
+Build `PT903_FOMO300K_FULL_COV64_R2` with the two backed-up task preparation
+scripts in the [reproduction entry points](reproduce.md#prepare-the-reported-pretraining-task)
+before launching this recipe.
+
 The reported run uses 64-cubed random crops, 60% block masking, AdamW, and
 bfloat16 mixed precision. It optimizes reconstruction MSE plus a
 variance/covariance regularizer on a 512-dimensional multiscale projection:

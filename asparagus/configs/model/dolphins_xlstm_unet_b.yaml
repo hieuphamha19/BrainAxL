@@ -1,0 +1,15 @@
+defaults:
+  - core/dolphins_xlstm_unet@
+
+dimensions: 3D
+
+pretrain_net: dolphins_xlstm_unet_b
+
+seg_net: dolphins_xlstm_unet_b
+cls_net: dolphins_xlstm_unet_b_clsreg
+
+plugin_seg_net:
+plugin_seg_train_n_last_params:
+
+encoder_dropout_rate: 0.0
+decoder_dropout_rate: 0.0

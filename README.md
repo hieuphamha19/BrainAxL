@@ -108,6 +108,9 @@ processed data, labels, and checkpoints are intentionally not committed.
 
 ## Data contract
 
+For the main-code inventory and commands to create the reported pretraining
+task, see the [reproduction entry points](docs/reproduce.md).
+
 Training reads an Asparagus task directory from
 `$ASPARAGUS_DATA/<TASK_NAME>`. It must contain `dataset.json`, `paths.json`, and
 the split JSON referenced by the selected config. Use the tools in
